@@ -8,43 +8,47 @@
 
 'use strict';
 
+var GemnasiumClient = require('gemnasium-client');
+var moment = require('moment');
+
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+  grunt.registerTask('gemnasium', 'Grunt task for gemnasium', function() {
+    var done = this.async();
+    var instance = this;
 
-  grunt.registerMultiTask('gemnasium', 'Grunt task for gemnasium', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
+    var client = new GemnasiumClient();
+    client.alerts(function(err, result){
+      var options = instance.options();
+
+      if(err){
+        grunt.fail.fatal(err);
+      }
+
+      //fail if any alerts found and no max given
+      if(!options.max && result.length){
+        grunt.fail.fatal(result.length + " alerts");
+      }
+
+      //fail if more than the specified amount of alerts found
+      if(options.max && result.length >= options.max){
+        grunt.fail.fatal("More than " + options.max + " alerts");
+      }
+
+      if(options.age){
+        var now = moment();
+        result.map(function(item){
+          var daysDiff = now.diff(item.open_at, 'days');
+          grunt.log.debug(item.advisory.title + ' = ' + daysDiff + ' days old');
+          if(daysDiff > options.age){
+            grunt.fail.fatal('Alert is too old "' + item.advisory.title + '" (' + daysDiff + ' days)');
+          }
+        });
+      }
+
+      done();
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
   });
 
 };
