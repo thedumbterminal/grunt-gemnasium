@@ -13,6 +13,11 @@ var moment = require('moment');
 
 module.exports = function(grunt) {
 
+  var filterByStatus = function(item){
+    var unwanted = ['acknowledged', 'closed'];
+    return unwanted.indexOf(item.status) === -1;
+  };
+
   grunt.registerTask('gemnasium', 'Grunt task for gemnasium', function() {
     var done = this.async();
     var instance = this;
@@ -24,6 +29,8 @@ module.exports = function(grunt) {
       if(err){
         grunt.fail.fatal(err);
       }
+
+      result = result.filter(filterByStatus);
 
       //fail if any alerts found and no max given
       if(!options.max && result.length){
