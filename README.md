@@ -2,6 +2,9 @@
 
 [![Dependency Status](https://gemnasium.com/thedumbterminal/grunt-gemnasium.svg)](https://gemnasium.com/thedumbterminal/grunt-gemnasium)
 
+[![Build Status](https://travis-ci.org/thedumbterminal/grunt-gemnasium.svg)](https://travis-ci.org/thedumbterminal/grunt-gemnasium.svg)
+
+
 > Grunt task for gemnasium
 
 ## Getting Started
