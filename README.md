@@ -1,5 +1,7 @@
 # grunt-gemnasium
 
+[![Dependency Status](https://gemnasium.com/thedumbterminal/grunt-gemnasium.svg)](https://gemnasium.com/thedumbterminal/grunt-gemnasium)
+
 > Grunt task for gemnasium
 
 ## Getting Started
