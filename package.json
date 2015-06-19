@@ -1,7 +1,7 @@
 {
   "name": "grunt-gemnasium",
   "description": "Grunt task for gemnasium",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/thedumbterminal/grunt-gemnasium",
   "author": {
     "name": "thedumbterminal",
