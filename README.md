@@ -22,6 +22,11 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-gemnasium');
 ```
 
+To run please ensure to set the correct environment variables, which can be found in the gemnasium account and project settings pages.
+
+    export GEMNASIUM_TOKEN=yourtoken
+    export GEMNASIUM_PROJECT_SLUG=yourprojectslug
+
 ## The "gemnasium" task
 
 ### Overview
