@@ -25,7 +25,10 @@ module.exports = function(grunt) {
     gemnasium: {
       options: {
         max: 2,
-        age: 8
+        age: 8,
+        unwanted: [
+          'test'
+        ]
       }
     }
 
@@ -39,7 +42,8 @@ module.exports = function(grunt) {
 
   // By default, lint and run all tests.
   grunt.registerTask('default', [
-    'jshint'
+    'jshint',
+    'gemnasium'
   ]);
 
 };

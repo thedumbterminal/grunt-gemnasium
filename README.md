@@ -56,6 +56,12 @@ Default value: ``
 
 An integer value, stating the maximum permitted age of alerts.
 
+#### options.unwanted
+Type: `Array`
+Default value: `[]`
+
+An array of alert status types of which to ignore from gemnasium.
+
 ### Usage Examples
 
 #### Default Options
