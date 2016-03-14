@@ -1,3 +1,7 @@
+# 1.1.1
+
+* Update Grunt peer dependency.
+
 # 1.1.0
 
 * Unwanted alert statuses now configurable.
