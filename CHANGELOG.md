@@ -1,3 +1,7 @@
+# 1.1.2
+
+* Updated dev dependencies.
+
 # 1.1.1
 
 * Update Grunt peer dependency.
